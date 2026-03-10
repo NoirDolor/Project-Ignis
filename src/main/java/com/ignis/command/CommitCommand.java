@@ -1,6 +1,7 @@
 package com.ignis.command;
 
 import com.ignis.core.CommitManager;
+import com.ignis.core.RepositoryValidator;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
@@ -25,6 +26,25 @@ public class CommitCommand {
                                             String worldPath = level.getServer()
                                                     .getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT)
                                                     .toString();
+
+                                            if (!RepositoryValidator.isRepository(worldPath)) {
+
+                                                context.getSource().sendFailure(
+                                                        Component.literal("Ignis repository not initialized. Run /ignis init first.")
+                                                );
+
+                                                return 0;
+                                            }
+
+                                            // add this bit in other commands too , just not nowww!! ;)
+                                            if (message.trim().isEmpty()) {
+
+                                                context.getSource().sendFailure(
+                                                        Component.literal("Commit message cannot be empty.")
+                                                );
+
+                                                return 0;
+                                            }
 
                                             CommitManager manager = new CommitManager();
                                             manager.createCommit(worldPath, message);

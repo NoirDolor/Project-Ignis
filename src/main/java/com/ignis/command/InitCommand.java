@@ -1,6 +1,7 @@
 package com.ignis.command;
 
 import com.ignis.core.RepositoryManager;
+import com.ignis.core.RepositoryValidator;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -18,6 +19,17 @@ public class InitCommand {
 
                                     ServerLevel level = context.getSource().getLevel();
                                     String worldPath = level.getServer().getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT).toString();
+
+                                    if (RepositoryValidator.isRepository(worldPath)) {
+
+                                        context.getSource().sendFailure(
+                                                net.minecraft.network.chat.Component.literal(
+                                                        "Ignis repository already initialized."
+                                                )
+                                        );
+
+                                        return 0;
+                                    }
 
                                     RepositoryManager repo = new RepositoryManager();
                                     repo.initRepository(worldPath);
