@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.time.Instant;
 import java.util.Scanner;
 import java.util.UUID;
+import com.ignis.core.SnapshotManager;
 
 public class CommitManager {
 
@@ -71,6 +72,9 @@ public class CommitManager {
             branchWriter.close();
 
             System.out.println("Commit created: " + commitId);
+
+            SnapshotManager snapshotManager = new SnapshotManager();
+            snapshotManager.createSnapshot(worldPath, commitId);
 
         } catch (IOException e) {
             e.printStackTrace();

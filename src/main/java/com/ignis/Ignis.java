@@ -10,6 +10,7 @@ import com.ignis.command.LogCommand;
 import com.ignis.command.BranchCommand;
 import com.ignis.command.CheckoutCommand;
 import com.ignis.command.StatusCommand;
+import com.ignis.command.RestoreCommand;
 
 
 
@@ -29,6 +30,7 @@ public class Ignis {
         BranchCommand.register(event.getDispatcher());
         CheckoutCommand.register(event.getDispatcher());
         StatusCommand.register(event.getDispatcher());
+        RestoreCommand.register(event.getDispatcher());
     }
 
 
