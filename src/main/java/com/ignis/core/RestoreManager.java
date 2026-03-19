@@ -12,6 +12,7 @@ public class RestoreManager {
         File worldDir = new File(worldPath);
         File regionDir = new File(worldDir, "region");
 
+
         File snapshotRegionDir = new File(
                 worldDir,
                 ".ignis/snapshots/" + commitId + "/region"
