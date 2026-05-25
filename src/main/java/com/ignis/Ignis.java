@@ -11,8 +11,7 @@ import com.ignis.command.BranchCommand;
 import com.ignis.command.CheckoutCommand;
 import com.ignis.command.StatusCommand;
 import com.ignis.command.RestoreCommand;
-
-
+import com.ignis.command.DiffCommand;
 
 @Mod(Ignis.MODID)
 public class Ignis {
@@ -31,8 +30,6 @@ public class Ignis {
         CheckoutCommand.register(event.getDispatcher());
         StatusCommand.register(event.getDispatcher());
         RestoreCommand.register(event.getDispatcher());
+        DiffCommand.register(event.getDispatcher());
     }
-
-
-
 }
